@@ -41,7 +41,9 @@
                         </el-menu-item>
                     </el-menu>
                 </div>
-                <div class="content">content</div>
+                <div class="content">
+                    <router-view></router-view>
+                </div>
             </div>
         </div>
         <div id="dFoot">固定尾部100px</div>
