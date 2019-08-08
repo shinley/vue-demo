@@ -48,8 +48,8 @@
     }
 
     #dHead {
-        height: 100px;
-        line-height: 100px;
+        height: 80px;
+        line-height: 80px;
         background: #690;
         width: 100%;
         position: absolute;
@@ -62,10 +62,10 @@
         background: #FC0;
         width: 100%;
         overflow: hidden;
-        top: 100px;
+        top: 80px;
         position: absolute;
         z-index: 10;
-        bottom: 100px;
+        bottom: 50px;
     }
 
     .mycontent {
@@ -89,8 +89,8 @@
     }
 
     #dFoot {
-        height: 100px;
-        line-height: 100px;
+        height: 50px;
+        line-height: 50px;
         background: #690;
         width: 100%;
         position: absolute;
