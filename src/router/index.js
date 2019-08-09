@@ -6,6 +6,7 @@ Vue.use(Router)
 import Login from '../components/views/Login.vue'
 import Home from '../components/views/Home.vue'
 import Home2 from '../components/views/Home2.vue'
+import List from '../components/views/List.vue'
 import Main from '../components/views/Main.vue'
 import NotFound from '../components/views/404.vue'
 import Table from '../components/views/nav1/Table.vue'
@@ -42,7 +43,7 @@ let routes = [
         name: '导航一',
         iconCls: 'el-icon-message',//图标样式class
         children: [
-            { path: '/main', component: Main, name: '主页', hidden: true },
+            { path: '/list', component: List, name: '列表'},
             { path: '/table', component: Table, name: 'Table' },
             { path: '/form', component: Form, name: 'Form' },
             { path: '/user', component: user, name: '列表' },
