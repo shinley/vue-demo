@@ -77,7 +77,7 @@
             clearFilter() {
                 this.$refs.filterTable.clearFilter();
             },
-            formatter(row, column) {
+            formatter(row) {
                 return row.address;
             },
             filterTag(value, row) {
