@@ -4,7 +4,7 @@
         <div id="dBody">
             <div class="mycontent">
                 <div class="sidebar">
-                    <el-menu :default-active="$route.path" class="el-menu-vertical-demo" v-show="!collapsed">
+                    <el-menu :default-active="$route.path" class="el-menu-vertical-demo">
                         <template v-for="(item,index) in $router.options.routes" v-if="!item.hidden">
                             <el-submenu :index="index+''" v-if="!item.leaf">
                                 <template slot="title"><i :class="item.iconCls"></i>{{item.name}}</template>
@@ -48,7 +48,9 @@
                 </div>
             </div>
         </div>
-        <div id="dFoot">固定尾部30px</div>
+        <div id="dFoot">
+            <!--固定尾部30px-->
+        </div>
     </div>
 </template>
 
@@ -83,7 +85,7 @@
         top: 60px;
         position: absolute;
         z-index: 10;
-        bottom: 30px;
+        bottom: 0px;
     }
 
     .mycontent {
@@ -108,15 +110,15 @@
     }
 
     #dFoot {
-        height: 30px;
-        line-height: 30px;
+        height: 0px;
+        line-height: 0px;
         width: 100%;
         position: absolute;
         z-index: 200;
         bottom: 0;
         text-align: center;
         color: #888;
-        background-color: #e6e6e6;
+        background-color: #d9d9d9;
     }
     .content-top{
         position: absolute;
@@ -125,7 +127,7 @@
         height: 30px;
         line-height: 30px;
         /*background-color: #f2f2f2;*/
-        background: linear-gradient(to bottom, #f1f1f1, #e6e6e6, #f1f1f1);
+        background: linear-gradient(to bottom, #ffffff, #e6e6e6, #ffffff);
         z-index: 120;
     }
     .content-main{
@@ -137,15 +139,16 @@
         padding-bottom:10px;
         text-align: center;
         overflow: auto;
+        background-color: #f2f2f2;
         z-index: 120;
     }
     .content-bottom{
         position: absolute;
         bottom:0px;
         width: 100%;
-        height: 30px;
-        /*background-color: #f2f2f2;*/
-        background: linear-gradient(to bottom, #f0f0f0, #e6e6e6, #f0f0f0);
+        height: 32px;
+        background-color: #e6e6e6;
+        /*background: linear-gradient(to bottom, #e6e6e6, #d9d9d9, #e6e6e6);*/
         text-align: center;
         z-index: 120;
     }
@@ -154,8 +157,8 @@
         background-color: #f2f2f2;
     }
 
-    .el-pagination > * {
-        background-color: #f2f2f2;
+    .el-pagination .el-pager li{
+        background-color: #ffffff;
     }
     .el-breadcrumb {
         position: absolute;
