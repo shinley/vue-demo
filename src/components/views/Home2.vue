@@ -1,6 +1,6 @@
 <template>
     <div id="main">
-        <div id="dHead">固定头部100px;</div>
+        <div id="dHead">固定头部60px;</div>
         <div id="dBody">
             <div class="mycontent">
                 <div class="sidebar">
@@ -48,7 +48,7 @@
                 </div>
             </div>
         </div>
-        <div id="dFoot">固定尾部100px</div>
+        <div id="dFoot">固定尾部30px</div>
     </div>
 </template>
 
@@ -66,8 +66,8 @@
     }
 
     #dHead {
-        height: 80px;
-        line-height: 80px;
+        height: 60px;
+        line-height: 60px;
         background: #20a0ff;
         width: 100%;
         position: absolute;
@@ -80,10 +80,10 @@
         /*background: #FC0;*/
         width: 100%;
         overflow: hidden;
-        top: 80px;
+        top: 60px;
         position: absolute;
         z-index: 10;
-        bottom: 50px;
+        bottom: 30px;
     }
 
     .mycontent {
@@ -108,8 +108,8 @@
     }
 
     #dFoot {
-        height: 50px;
-        line-height: 50px;
+        height: 30px;
+        line-height: 30px;
         width: 100%;
         position: absolute;
         z-index: 200;
@@ -124,7 +124,8 @@
         width: 100%;
         height: 30px;
         line-height: 30px;
-        background-color: #f2f2f2;
+        /*background-color: #f2f2f2;*/
+        background: linear-gradient(to bottom, #f1f1f1, #e6e6e6, #f1f1f1);
         z-index: 120;
     }
     .content-main{
@@ -143,7 +144,8 @@
         bottom:0px;
         width: 100%;
         height: 30px;
-        background-color: #f2f2f2;
+        /*background-color: #f2f2f2;*/
+        background: linear-gradient(to bottom, #f0f0f0, #e6e6e6, #f0f0f0);
         text-align: center;
         z-index: 120;
     }
