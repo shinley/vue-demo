@@ -85,7 +85,7 @@
         top: 60px;
         position: absolute;
         z-index: 10;
-        bottom: 0px;
+        bottom: 0px;  /*对应foot的高度*/
     }
 
     .mycontent {
