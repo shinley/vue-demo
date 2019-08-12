@@ -5,9 +5,7 @@ Vue.use(Router)
 
 import Login from '../components/views/Login.vue'
 import Home from '../components/views/Home.vue'
-import Home2 from '../components/views/Home2.vue'
 import List from '../components/views/List.vue'
-import Main from '../components/views/Main.vue'
 import NotFound from '../components/views/404.vue'
 import Table from '../components/views/nav1/Table.vue'
 import Form from '../components/views/nav1/Form.vue'
@@ -26,8 +24,8 @@ let routes = [
         hidden: true
     },
     {
-        path: '/home2',
-        component: Home2,
+        path: '/home',
+        component: Home,
         name: '导航一',
         iconCls: 'el-icon-message',//图标样式class
         children: [

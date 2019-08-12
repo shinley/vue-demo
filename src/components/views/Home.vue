@@ -1,270 +1,140 @@
 <template>
-	<el-row class="container">
-		<el-col :span="24" class="header">
-			<el-col :span="10" class="logo" :class="collapsed?'logo-collapse-width':'logo-width'">
-				{{collapsed?'':sysName}}
-			</el-col>
-			<el-col :span="10">
-				<div class="tools" @click.prevent="collapse">
-					<i class="fa fa-align-justify"></i>
-				</div>
-			</el-col>
-			<el-col :span="4" class="userinfo">
-				<el-dropdown trigger="hover">
-					<span class="el-dropdown-link userinfo-inner"><img :src="this.sysUserAvatar" /> {{sysUserName}}</span>
-					<el-dropdown-menu slot="dropdown">
-						<el-dropdown-item>我的消息</el-dropdown-item>
-						<el-dropdown-item>设置</el-dropdown-item>
-						<el-dropdown-item divided @click.native="logout">退出登录</el-dropdown-item>
-					</el-dropdown-menu>
-				</el-dropdown>
-			</el-col>
-		</el-col>
-		<el-col :span="24" class="main">
-			<aside :class="collapsed?'menu-collapsed':'menu-expanded'">
-				<!--导航菜单-->
-				<el-menu :default-active="$route.path" class="el-menu-vertical-demo" @open="handleopen" @close="handleclose" @select="handleselect"
-					 unique-opened router v-show="!collapsed">
-					<template v-for="(item,index) in $router.options.routes" v-if="!item.hidden">
-						<el-submenu :index="index+''" v-if="!item.leaf">
-							<template slot="title"><i :class="item.iconCls"></i>{{item.name}}</template>
-							<el-menu-item v-for="child in item.children" :index="child.path" :key="child.path" v-if="!child.hidden">{{child.name}}</el-menu-item>
-						</el-submenu>
-						<el-menu-item v-if="item.leaf&&item.children.length>0" :index="item.children[0].path"><i :class="item.iconCls"></i>{{item.children[0].name}}</el-menu-item>
-					</template>
-				</el-menu>
-				<!--导航菜单-折叠后-->
-				<ul class="el-menu el-menu-vertical-demo collapsed" v-show="collapsed" ref="menuCollapsed">
-					<li v-for="(item,index) in $router.options.routes" v-if="!item.hidden" class="el-submenu item">
-						<template v-if="!item.leaf">
-							<div class="el-submenu__title" style="padding-left: 20px;" @mouseover="showMenu(index,true)" @mouseout="showMenu(index,false)"><i :class="item.iconCls"></i></div>
-							<ul class="el-menu submenu" :class="'submenu-hook-'+index" @mouseover="showMenu(index,true)" @mouseout="showMenu(index,false)"> 
-								<li v-for="child in item.children" v-if="!child.hidden" :key="child.path" class="el-menu-item" style="padding-left: 40px;" :class="$route.path==child.path?'is-active':''" @click="$router.push(child.path)">{{child.name}}</li>
-							</ul>
-						</template>
-						<template v-else>
-							<li class="el-submenu">
-								<div class="el-submenu__title el-menu-item" style="padding-left: 20px;height: 56px;line-height: 56px;padding: 0 20px;" :class="$route.path==item.children[0].path?'is-active':''" @click="$router.push(item.children[0].path)"><i :class="item.iconCls"></i></div>
-							</li>
-						</template>
-					</li>
-				</ul>
-			</aside>
-			<section class="content-container">
-				<div class="grid-content bg-purple-light">
-					<el-col :span="24" class="breadcrumb-container">
-						<strong class="title">{{$route.name}}</strong>
-						<el-breadcrumb separator="/" class="breadcrumb-inner">
-							<el-breadcrumb-item v-for="item in $route.matched" :key="item.path">
-								{{ item.name }}
-							</el-breadcrumb-item>
-						</el-breadcrumb>
-					</el-col>
-					<el-col :span="24" class="content-wrapper">
-						<transition name="fade" mode="out-in">
-							<router-view></router-view>
-						</transition>
-					</el-col>
-				</div>
-			</section>
-		</el-col>
-	</el-row>
+    <div id="main">
+        <div id="dHead">固定头部60px;</div>
+        <div id="dBody">
+            <div class="mycontent">
+                <div class="sidebar">
+                    <el-menu :default-active="$route.path" class="el-menu-vertical-demo" router>
+                        <template v-for="(item,index) in $router.options.routes" v-if="!item.hidden">
+                            <el-submenu :index="index+''" v-if="!item.leaf">
+                                <template slot="title"><i :class="item.iconCls"></i>{{item.name}}</template>
+                                <el-menu-item v-for="child in item.children" :index="child.path" :key="child.path" v-if="!child.hidden">{{child.name}}</el-menu-item>
+                            </el-submenu>
+                            <el-menu-item v-if="item.leaf&&item.children.length>0" :index="item.children[0].path"><i :class="item.iconCls"></i>{{item.children[0].name}}</el-menu-item>
+                        </template>
+                    </el-menu>
+                </div>
+                <div class="content">
+                   <router-view></router-view>
+                </div>
+            </div>
+        </div>
+        <div id="dFoot">
+            <!--固定尾部30px-->
+        </div>
+    </div>
 </template>
 
 <script>
-	export default {
-		data() {
-			return {
-				sysName:'VUEADMIN',
-				collapsed:false,
-				sysUserName: '',
-				sysUserAvatar: '',
-				form: {
-					name: '',
-					region: '',
-					date1: '',
-					date2: '',
-					delivery: false,
-					type: [],
-					resource: '',
-					desc: ''
-				}
-			}
-		},
-		methods: {
-			onSubmit() {
-				console.log('submit!');
-			},
-			handleopen() {
-				//console.log('handleopen');
-			},
-			handleclose() {
-				//console.log('handleclose');
-			},
-			handleselect: function (a, b) {
-			},
-			//退出登录
-			logout: function () {
-				var _this = this;
-				this.$confirm('确认退出吗?', '提示', {
-					//type: 'warning'
-				}).then(() => {
-					sessionStorage.removeItem('user');
-					_this.$router.push('/login');
-				}).catch(() => {
-
-				});
-
-
-			},
-			//折叠导航栏
-			collapse:function(){
-				this.collapsed=!this.collapsed;
-			},
-			showMenu(i,status){
-				this.$refs.menuCollapsed.getElementsByClassName('submenu-hook-'+i)[0].style.display=status?'block':'none';
-			}
-		},
-		mounted() {
-			var user = sessionStorage.getItem('user');
-			if (user) {
-				user = JSON.parse(user);
-				this.sysUserName = user.name || '';
-				this.sysUserAvatar = user.avatar || '';
-			}
-
-		}
-	}
-
+    export default {
+        name: "Home2"
+    }
 </script>
 
-<style scoped lang="scss">
-	@import '../../styles/vars.scss';
-	
-	.container {
-		position: absolute;
-		top: 0px;
-		bottom: 0px;
-		width: 100%;
-		.header {
-			height: 60px;
-			line-height: 60px;
-			background: $color-primary;
-			color:#fff;
-			.userinfo {
-				text-align: right;
-				padding-right: 35px;
-				float: right;
-				.userinfo-inner {
-					cursor: pointer;
-					color:#fff;
-					img {
-						width: 40px;
-						height: 40px;
-						border-radius: 20px;
-						margin: 10px 0px 10px 10px;
-						float: right;
-					}
-				}
-			}
-			.logo {
-				//width:230px;
-				height:60px;
-				font-size: 22px;
-				padding-left:20px;
-				padding-right:20px;
-				border-color: rgba(238,241,146,0.3);
-				border-right-width: 1px;
-				border-right-style: solid;
-				img {
-					width: 40px;
-					float: left;
-					margin: 10px 10px 10px 18px;
-				}
-				.txt {
-					color:#fff;
-				}
-			}
-			.logo-width{
-				width:230px;
-			}
-			.logo-collapse-width{
-				width:60px
-			}
-			.tools{
-				padding: 0px 23px;
-				width:14px;
-				height: 60px;
-				line-height: 60px;
-				cursor: pointer;
-			}
-		}
-		.main {
-			display: flex;
-			// background: #324057;
-			position: absolute;
-			top: 60px;
-			bottom: 0px;
-			overflow: hidden;
-			aside {
-				flex:0 0 230px;
-				width: 230px;
-				// position: absolute;
-				// top: 0px;
-				// bottom: 0px;
-				.el-menu{
-					height: 100%;
-				}
-				.collapsed{
-					width:60px;
-					.item{
-						position: relative;
-					}
-					.submenu{
-						position:absolute;
-						top:0px;
-						left:60px;
-						z-index:99999;
-						height:auto;
-						display:none;
-					}
+<style scoped>
+    #main {
+        height: 100%;
+        margin: 0;
+        padding: 0
+    }
 
-				}
-			}
-			.menu-collapsed{
-				flex:0 0 60px;
-				width: 60px;
-			}
-			.menu-expanded{
-				flex:0 0 230px;
-				width: 230px;
-			}
-			.content-container {
-				// background: #f1f2f7;
-				flex:1;
-				// position: absolute;
-				// right: 0px;
-				// top: 0px;
-				// bottom: 0px;
-				// left: 230px;
-				overflow-y: scroll;
-				padding: 20px;
-				.breadcrumb-container {
-					//margin-bottom: 15px;
-					.title {
-						width: 200px;
-						float: left;
-						color: #475669;
-					}
-					.breadcrumb-inner {
-						float: right;
-					}
-				}
-				.content-wrapper {
-					background-color: #fff;
-					box-sizing: border-box;
-				}
-			}
-		}
-	}
+    #dHead {
+        height: 60px;
+        line-height: 60px;
+        background: #20a0ff;
+        width: 100%;
+        position: absolute;
+        z-index: 5;
+        top: 0;
+        text-align: center;
+    }
+
+    #dBody {
+        /*background: #FC0;*/
+        width: 100%;
+        overflow: hidden;
+        top: 60px;
+        position: absolute;
+        z-index: 10;
+        bottom: 0px;  /*对应foot的高度*/
+    }
+
+    .mycontent {
+        padding: 0px;
+        height: 100%;
+        display: flex;
+    }
+
+    .sidebar {
+        flex: 0 0 200px;
+        height: 100%;
+        border-right: 1px #e6e6e6 solid;
+        background-color: #f2f2f2;
+    }
+
+    .content {
+        position: relative;
+        flex: 1;
+        height: 100%;
+        /*background: #F0AD4E;*/
+        z-index: 110;
+    }
+
+    #dFoot {
+        height: 0px;
+        line-height: 0px;
+        width: 100%;
+        position: absolute;
+        z-index: 200;
+        bottom: 0;
+        text-align: center;
+        color: #888;
+        background-color: #d9d9d9;
+    }
+    .content-top{
+        position: absolute;
+        top:0px;
+        width: 100%;
+        height: 30px;
+        line-height: 30px;
+        /*background-color: #f2f2f2;*/
+        background: linear-gradient(to bottom, #ffffff, #e6e6e6, #ffffff);
+        z-index: 120;
+    }
+    .content-main{
+        position: absolute;
+        width: calc(100% - 10px); /* 流下10px 给pading-left */
+        top: 30px;
+        bottom: 30px;
+        padding-top:10px;
+        padding-bottom:10px;
+        text-align: center;
+        overflow: auto;
+        background-color: #f2f2f2;
+        z-index: 120;
+    }
+    .content-bottom{
+        position: absolute;
+        bottom:0px;
+        width: 100%;
+        height: 32px;
+        background-color: #e6e6e6;
+        /*background: linear-gradient(to bottom, #e6e6e6, #d9d9d9, #e6e6e6);*/
+        text-align: center;
+        z-index: 120;
+    }
+    .el-menu {
+        border-right: 0px;
+        background-color: #f2f2f2;
+    }
+
+    .el-pagination .el-pager li{
+        background-color: #ffffff;
+    }
+    .el-breadcrumb {
+        position: absolute;
+        top:50%;
+        transform: translateY(-50%);
+        left:10px;
+    }
 </style>
