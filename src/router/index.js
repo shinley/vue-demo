@@ -9,6 +9,7 @@ import List from '../components/views/List.vue'
 import NotFound from '../components/views/404.vue'
 import Table from '../components/views/nav1/Table.vue'
 import Form from '../components/views/nav1/Form.vue'
+import Form2 from '../components/views/Form.vue'
 import user from '../components/views/nav1/user.vue'
 let routes = [
     {
@@ -26,7 +27,7 @@ let routes = [
     {
         path: '/home',
         component: Home,
-        name: '导航一',
+        name: '流程部署',
         iconCls: 'el-icon-message',//图标样式class
         children: [
             { path: '/list', component: List, name: '列表'},
@@ -35,16 +36,16 @@ let routes = [
             { path: '/user', component: user, name: '列表' },
         ]
     },
-    // {
-    //     path: '/',
-    //     component: Home,
-    //     name: '导航二',
-    //     iconCls: 'fa fa-id-card-o',
-    //     children: [
-    //         { path: '/page4', component: Page4, name: '页面4' },
-    //         { path: '/page5', component: Page5, name: '页面5' }
-    //     ]
-    // },
+    {
+        path: '/',
+        component: Home,
+        name: '导航二',
+        iconCls: 'fa fa-id-card-o',
+        children: [
+            { path: '/list', component: List, name: '页面4' },
+            { path: '/form2', component: Form2, name: '页面5' }
+        ]
+    },
     // {
     //     path: '/',
     //     component: Home,
