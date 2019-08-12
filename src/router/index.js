@@ -7,10 +7,10 @@ import Login from '../components/views/Login.vue'
 import Home from '../components/views/Home.vue'
 import List from '../components/views/List.vue'
 import NotFound from '../components/views/404.vue'
-import Table from '../components/views/nav1/Table.vue'
-import Form from '../components/views/nav1/Form.vue'
+// import Table from '../components/views/nav1/Table.vue'
+// import Form from '../components/views/nav1/Form.vue'
 import Form2 from '../components/views/Form.vue'
-import user from '../components/views/nav1/user.vue'
+// import user from '../components/views/nav1/user.vue'
 let routes = [
     {
         path: '/login',
@@ -31,9 +31,7 @@ let routes = [
         iconCls: 'el-icon-message',//图标样式class
         children: [
             { path: '/list', component: List, name: '列表'},
-            { path: '/table', component: Table, name: 'Table' },
-            { path: '/form', component: Form, name: 'Form' },
-            { path: '/user', component: user, name: '列表' },
+            { path: '/form2', component: Form2, name: '页面5' }
         ]
     },
     {
