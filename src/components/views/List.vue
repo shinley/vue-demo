@@ -12,6 +12,7 @@
             <el-table
                     ref="filterTable"
                     :data="tableData"
+                    height="100%"
                     style="width: 100%">
                 <el-table-column
                         align="center"
@@ -186,7 +187,7 @@
         /*padding-top:10px;*/
         /*padding-bottom:10px;*/
         text-align: center;
-        overflow: auto;
+        overflow-y: scroll;
         /*background-color: #f2f2f2;*/
         z-index: 120;
     }
