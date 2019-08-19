@@ -14,6 +14,7 @@
 
 import axios from 'axios'
 import { Message, Loading } from 'element-ui'
+import config from '../config/app.config'
 
 // 设置默认请求头
 axios.defaults.headers = {
@@ -88,7 +89,7 @@ let http = {
     createLoading()
     return axios({
       method: 'get',
-      url,
+      url: config.baseUrl + url,
       params, // get 请求时带的参数
       headers: {
         'X-Requested-With': 'XMLHttpRequest'
@@ -118,10 +119,11 @@ let http = {
     )
   },
   post (url, data) {
+    console.log(config)
     createLoading()
     return axios({
       method: 'post',
-      url,
+      url: config.baseURL + url,
       data: data,
       headers: {
         'X-Requested-With': 'XMLHttpRequest',
@@ -155,7 +157,7 @@ let http = {
     createLoading()
     return axios({
       method: 'put',
-      url,
+      url: config.baseURL + url,
       data
     }).then(
       (res) => {
@@ -172,7 +174,7 @@ let http = {
     createLoading()
     return axios({
       method: 'patch',
-      url,
+      url: config.baseURL + url,
       data
     }).then(
       (res) => {
@@ -189,7 +191,7 @@ let http = {
     createLoading()
     return axios({
       method: 'delete',
-      url,
+      url: config.baseURL + url,
       data
     }).then(
       (res) => {

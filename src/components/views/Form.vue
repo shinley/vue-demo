@@ -49,7 +49,7 @@
                     <el-input type="textarea" v-model="form.desc"></el-input>
                 </el-form-item>
                 <el-form-item>
-                    <el-button type="primary">立即创建</el-button>
+                    <el-button type="primary" @click="checkoutTest">立即创建</el-button>
                     <el-button @click.native.prevent>取消</el-button>
                 </el-form-item>
             </el-form>
@@ -65,6 +65,7 @@
 </template>
 
 <script>
+    import {requestLogin} from '../../api/api'
     export default {
         data() {
             return {
@@ -83,7 +84,26 @@
         methods: {
             onSubmit() {
                 console.log('submit!');
+            },
+
+            checkoutTest() {
+                var loginParams = {username:'chenxl'}
+                requestLogin(loginParams).then(data => {
+                    //NProgress.done();
+                    let { msg, code, user } = data;
+                    if (code !== 200) {
+                        this.$message({
+                            message: msg,
+                            type: 'error'
+                        });
+                    } else {
+                        sessionStorage.setItem('user', JSON.stringify(user));
+                        this.$router.push({ path: '/table' });
+                    }
+                });
+                console.log('on click button')
             }
+
         }
     }
 </script>
