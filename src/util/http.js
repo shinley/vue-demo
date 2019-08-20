@@ -86,10 +86,11 @@ function closeLoading () {
 
 let http = {
   get (url, params) {
+    url = /^(((http|https):\/\/)|(\/\/))/.test(url) ? url : (config.baseURL + url);
     createLoading()
     return axios({
       method: 'get',
-      url: config.baseUrl + url,
+      url: url,
       params, // get 请求时带的参数
       headers: {
         'X-Requested-With': 'XMLHttpRequest'
@@ -119,11 +120,12 @@ let http = {
     )
   },
   post (url, data) {
+    url = /^(((http|https):\/\/)|(\/\/))/.test(url) ? url : (config.baseURL + url);
     console.log(config)
     createLoading()
     return axios({
       method: 'post',
-      url: config.baseURL + url,
+      url: url,
       data: data,
       headers: {
         'X-Requested-With': 'XMLHttpRequest',
@@ -155,9 +157,10 @@ let http = {
   },
   put (url, data) {
     createLoading()
+    url = /^(((http|https):\/\/)|(\/\/))/.test(url) ? url : (config.baseURL + url);
     return axios({
       method: 'put',
-      url: config.baseURL + url,
+      url: url,
       data
     }).then(
       (res) => {
@@ -172,9 +175,10 @@ let http = {
   },
   patch (url, data) {
     createLoading()
+    url = /^(((http|https):\/\/)|(\/\/))/.test(url) ? url : (config.baseURL + url);
     return axios({
       method: 'patch',
-      url: config.baseURL + url,
+      url: url,
       data
     }).then(
       (res) => {
@@ -189,9 +193,10 @@ let http = {
   },
   delete (url, data) {
     createLoading()
+    url = /^(((http|https):\/\/)|(\/\/))/.test(url) ? url : (config.baseURL + url);
     return axios({
       method: 'delete',
-      url: config.baseURL + url,
+      url: url,
       data
     }).then(
       (res) => {
