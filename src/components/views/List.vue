@@ -28,24 +28,18 @@
                         sortable
                         width="180"
                         column-key="date"
+                        :formatter="formatDate"
                 >
                 </el-table-column>
-                <el-table-column
-                        prop="address"
-                        label="地址"
-                        :formatter="formatter">
-                </el-table-column>
-                <el-table-column
-                        prop="tag"
-                        label="标签"
-                        width="100"
-                        :filters="[{ text: '家', value: '家' }, { text: '公司', value: '公司' }]"
-                        :filter-method="filterTag"
-                        filter-placement="bottom-end">
+                <el-table-column label="操作">
                     <template slot-scope="scope">
-                        <el-tag
-                                :type="scope.row.tag === '家' ? 'primary' : 'success'"
-                                disable-transitions>{{scope.row.tag}}</el-tag>
+                        <el-button
+                                size="mini"
+                                @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+                        <el-button
+                                size="mini"
+                                type="danger"
+                                @click="handleDelete(scope.$index, scope.row)">删除</el-button>
                     </template>
                 </el-table-column>
             </el-table>
@@ -62,6 +56,7 @@
 
 <script>
     import {getDeploymentList} from '../../api/api'
+    import format from 'date-fns/format'
     export default {
         data() {
             return {
@@ -87,9 +82,9 @@
             filterTag(value, row) {
                 return row.tag === value;
             },
-            filterHandler(value, row, column) {
-                const property = column['property'];
-                return row[property] === value;
+            formatDate(vrow, column, cellValue) {
+                let d = format(cellValue, "yyyy-MM-dd hh:mm:ss");
+                return d;
             }
         }
     }
