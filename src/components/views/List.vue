@@ -3,11 +3,12 @@
         <div class="content-top">
             <el-breadcrumb separator-class="el-icon-arrow-right">
                 <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-                <el-breadcrumb-item>活动管理</el-breadcrumb-item>
-                <el-breadcrumb-item>活动列表</el-breadcrumb-item>
-                <el-breadcrumb-item>活动详情</el-breadcrumb-item>
+                <el-breadcrumb-item>流程管理</el-breadcrumb-item>
             </el-breadcrumb>
         </div>
+       <div class="button-list">
+
+       </div>
         <div class="content-main">
             <el-table
                     ref="filterTable"
@@ -168,21 +169,21 @@
         }
     }
 </script>
-<style>
+<style lang="scss">
+    $content-top-height: 40px;
     .content-top{
         position: absolute;
         top:0px;
         width: 100%;
-        height: 40px;
-        line-height: 40px;
-        /*background-color: #f2f2f2;*/
+        height: $content-top-height;
+        line-height: $content-top-height;
         background: linear-gradient(to bottom, #f2f2f2, #e6e6e6, #f2f2f2);
         z-index: 120;
     }
     .content-main{
         position: absolute;
         width: calc(100% - 10px); /* 流下10px 给pading-left */
-        top: 40px;
+        top: $content-top-height;
         bottom: 40px;
         /*padding-top:10px;*/
         /*padding-bottom:10px;*/

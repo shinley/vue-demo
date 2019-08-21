@@ -31,66 +31,70 @@
     }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+    $head-height: 60px;
     #main {
         height: 100%;
         margin: 0;
-        padding: 0
+        padding: 0;
+
+        #dHead {
+            height: $head-height;
+            line-height: $head-height;
+            background: #20a0ff;
+            width: 100%;
+            position: absolute;
+            z-index: 5;
+            top: 0;
+            text-align: center;
+        }
+
+        #dBody {
+            /*background: #FC0;*/
+            width: 100%;
+            overflow: hidden;
+            top: $head-height;
+            position: absolute;
+            z-index: 10;
+            bottom: 0px;  /*对应foot的高度*/
+
+            .mycontent {
+                padding: 0px;
+                height: 100%;
+                display: flex;
+
+                .sidebar {
+                    flex: 0 0 200px;
+                    height: 100%;
+                    border-right: 1px #e6e6e6 solid;
+                    background-color: #f2f2f2;
+                }
+
+                .content {
+                    position: relative;
+                    flex: 1;
+                    height: 100%;
+                    /*background: #F0AD4E;*/
+                    z-index: 110;
+                }
+            }
+        }
+
+        #dFoot {
+            height: 0px;
+            line-height: 0px;
+            width: 100%;
+            position: absolute;
+            z-index: 200;
+            bottom: 0;
+            text-align: center;
+            color: #888;
+            background-color: #d9d9d9;
+        }
     }
 
-    #dHead {
-        height: 60px;
-        line-height: 60px;
-        background: #20a0ff;
-        width: 100%;
-        position: absolute;
-        z-index: 5;
-        top: 0;
-        text-align: center;
-    }
 
-    #dBody {
-        /*background: #FC0;*/
-        width: 100%;
-        overflow: hidden;
-        top: 60px;
-        position: absolute;
-        z-index: 10;
-        bottom: 0px;  /*对应foot的高度*/
-    }
 
-    .mycontent {
-        padding: 0px;
-        height: 100%;
-        display: flex;
-    }
-
-    .sidebar {
-        flex: 0 0 200px;
-        height: 100%;
-        border-right: 1px #e6e6e6 solid;
-        background-color: #f2f2f2;
-    }
-
-    .content {
-        position: relative;
-        flex: 1;
-        height: 100%;
-        /*background: #F0AD4E;*/
-        z-index: 110;
-    }
-
-    #dFoot {
-        height: 0px;
-        line-height: 0px;
-        width: 100%;
-        position: absolute;
-        z-index: 200;
-        bottom: 0;
-        text-align: center;
-        color: #888;
-        background-color: #d9d9d9;
-    }
     .content-top{
         position: absolute;
         top:0px;
