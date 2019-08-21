@@ -59,7 +59,8 @@
             <el-pagination
                     background
                     layout="prev, pager, next"
-                    :total="1000">
+                    :page-size="pageSize"
+                    :total="total">
             </el-pagination>
         </div>
     </div>
@@ -71,13 +72,17 @@
     export default {
         data() {
             return {
-                tableData: []
+                tableData: [],
+                total: 0,
+                pageSize: 0,
             }
         },
         mounted() {
             getDeploymentList().then(resp => {
                 let  data  = resp.data;
-                this.tableData = data;
+                this.tableData = data.list;
+                this.total = data.total;
+                this.pageSize = 10;
             });
         },
         methods: {

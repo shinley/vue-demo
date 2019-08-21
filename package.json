@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve --mode local --open --port 8080",
+    "serve": "vue-cli-service serve --mode local",
     "build:dev": "vue-cli-service build --mode dev",
     "build:beta": "vue-cli-service build --mode beta",
     "build:prod": "vue-cli-service build --mode prod",
