@@ -171,6 +171,8 @@
 </script>
 <style lang="scss">
     $content-top-height: 40px;
+    $bottom-height:35px;
+    $bottom-padding-top:5px;
     .content-top{
         position: absolute;
         top:0px;
@@ -184,7 +186,7 @@
         position: absolute;
         width: calc(100% - 10px); /* 流下10px 给pading-left */
         top: $content-top-height;
-        bottom: 40px;
+        bottom: $bottom-height + $bottom-padding-top;
         /*padding-top:10px;*/
         /*padding-bottom:10px;*/
         text-align: center;
@@ -196,8 +198,8 @@
         position: absolute;
         bottom:0px;
         width: 100%;
-        height: 35px;
-        padding-top: 5px;
+        height: $bottom-height;
+        padding-top: $bottom-padding-top;
         /*background-color: #e6e6e6;*/
         background: linear-gradient(to bottom, #f2f2f2, #e6e6e6, #f2f2f2);
         text-align: center;
