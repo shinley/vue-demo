@@ -17,20 +17,18 @@
                     style="width: 100%">
                 <el-table-column
                         align="center"
-                        prop="date"
-                        label="日期"
-                        sortable
-                        width="180"
-                        column-key="date"
-                        :filters="[{text: '2016-05-01', value: '2016-05-01'}, {text: '2016-05-02', value: '2016-05-02'}, {text: '2016-05-03', value: '2016-05-03'}, {text: '2016-05-04', value: '2016-05-04'}]"
-                        :filter-method="filterHandler"
-                >
+                        prop="name"
+                        label="部署名称"
+                        width="180">
                 </el-table-column>
                 <el-table-column
                         align="center"
-                        prop="name"
-                        label="姓名"
-                        width="180">
+                        prop="deploymentTime"
+                        label="部署日期"
+                        sortable
+                        width="180"
+                        column-key="date"
+                >
                 </el-table-column>
                 <el-table-column
                         prop="address"
@@ -63,91 +61,18 @@
 </template>
 
 <script>
+    import {getDeploymentList} from '../../api/api'
     export default {
         data() {
             return {
-                tableData: [{
-                    date: '2016-05-02',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1518 弄',
-                    tag: '家'
-                }, {
-                    date: '2016-05-04',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1517 弄',
-                    tag: '公司'
-                }, {
-                    date: '2016-05-01',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1519 弄',
-                    tag: '家'
-                }, {
-                    date: '2016-05-03',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1516 弄',
-                    tag: '公司'
-                },{
-                    date: '2016-05-02',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1518 弄',
-                    tag: '家'
-                }, {
-                    date: '2016-05-04',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1517 弄',
-                    tag: '公司'
-                }, {
-                    date: '2016-05-01',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1519 弄',
-                    tag: '家'
-                }, {
-                    date: '2016-05-03',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1516 弄',
-                    tag: '公司'
-                }, {
-                    date: '2016-05-02',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1518 弄',
-                    tag: '家'
-                }, {
-                    date: '2016-05-04',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1517 弄',
-                    tag: '公司'
-                }, {
-                    date: '2016-05-01',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1519 弄',
-                    tag: '家'
-                }, {
-                    date: '2016-05-03',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1516 弄',
-                    tag: '公司'
-                }, {
-                    date: '2016-05-02',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1518 弄',
-                    tag: '家'
-                }, {
-                    date: '2016-05-04',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1517 弄',
-                    tag: '公司'
-                }, {
-                    date: '2016-05-01',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1519 弄',
-                    tag: '家'
-                }, {
-                    date: '2016-05-03',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1516 弄',
-                    tag: '公司'
-                }]
+                tableData: []
             }
+        },
+        mounted() {
+            getDeploymentList().then(resp => {
+                let  data  = resp.data;
+                this.tableData = data;
+            });
         },
         methods: {
             resetDateFilter() {

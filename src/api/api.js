@@ -2,7 +2,7 @@ import http from '../util/http'
 
 export const requestLogin = params => { return http.post(`login`, params).then(res => res.data); };
 
-export const getUserList = params => { return http.get(`user/list`, { params: params }); };
+export const getDeploymentList = params => { return http.get(`activiti/deployment/list`, { params: params }).then(res=>res.data); };
 
 export const getUserListPage = params => { return http.get(`user/listpage`, { params: params }); };
 
