@@ -17,29 +17,40 @@
                     style="width: 100%">
                 <el-table-column
                         align="center"
+                        prop="id"
+                        label="ID"
+                />
+                <el-table-column
+                        align="center"
                         prop="name"
                         label="部署名称"
-                        width="180">
-                </el-table-column>
+                />
+                <el-table-column
+                        align="center"
+                        prop="category"
+                        label="分类"
+                />
                 <el-table-column
                         align="center"
                         prop="deploymentTime"
                         label="部署日期"
                         sortable
-                        width="180"
                         column-key="date"
                         :formatter="formatDate"
-                >
-                </el-table-column>
-                <el-table-column label="操作">
+                />
+                <el-table-column
+                        fixed="right"
+                        align="center"
+                        label="操作"
+                        >
                     <template slot-scope="scope">
                         <el-button
                                 size="mini"
-                                @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+                                @click="handleEdit(scope.$index, scope.row)">Edit</el-button>
                         <el-button
                                 size="mini"
                                 type="danger"
-                                @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+                                @click="handleDelete(scope.$index, scope.row)">Delete</el-button>
                     </template>
                 </el-table-column>
             </el-table>
