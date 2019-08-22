@@ -83,55 +83,6 @@
     </div>
 </template>
 
-<style lang="scss" scoped>
-    $content-top-height: 40px;
-    $bottom-height:35px;
-    $bottom-padding-top:5px;
-    $operation-menu-height:40px;
-    .content-top{
-        position: absolute;
-        top:0px;
-        width: 100%;
-        height: $content-top-height;
-        line-height: $content-top-height;
-        background: linear-gradient(to bottom, #f2f2f2, #e6e6e6, #f2f2f2);
-        z-index: 120;
-    }
-    .operation-menu {
-        position: absolute;
-        top: $content-top-height;
-        height: $operation-menu-height;
-        line-height: $operation-menu-height;
-        padding-left: 30px;
-        width: 100%;
-
-        /*background-color: #42b983;*/
-        z-index: 120;
-    }
-    .content-main{
-        position: absolute;
-        width: calc(100% - 10px); /* 流下10px 给pading-left */
-        top: $content-top-height + $operation-menu-height;
-        bottom: $bottom-height + $bottom-padding-top;
-        /*padding-top:10px;*/
-        /*padding-bottom:10px;*/
-        text-align: center;
-        overflow-y: scroll;
-        /*background-color: #f2f2f2;*/
-        z-index: 120;
-    }
-    .content-bottom{
-        position: absolute;
-        bottom:0px;
-        width: 100%;
-        height: $bottom-height;
-        padding-top: $bottom-padding-top;
-        /*background-color: #e6e6e6;*/
-        background: linear-gradient(to bottom, #f2f2f2, #e6e6e6, #f2f2f2);
-        text-align: center;
-        z-index: 120;
-    }
-</style>
 <script>
     import {getDeploymentList} from '../../api/api'
     import format from 'date-fns/format'
@@ -192,3 +143,53 @@
         }
     }
 </script>
+
+<style lang="scss" scoped>
+    $content-top-height: 40px;
+    $bottom-height:35px;
+    $bottom-padding-top:5px;
+    $operation-menu-height:40px;
+    .content-top{
+        position: absolute;
+        top:0px;
+        width: 100%;
+        height: $content-top-height;
+        line-height: $content-top-height;
+        background: linear-gradient(to bottom, #f2f2f2, #e6e6e6, #f2f2f2);
+        z-index: 120;
+    }
+    .operation-menu {
+        position: absolute;
+        top: $content-top-height;
+        height: $operation-menu-height;
+        line-height: $operation-menu-height;
+        padding-left: 30px;
+        width: 100%;
+
+        /*background-color: #42b983;*/
+        z-index: 120;
+    }
+    .content-main{
+        position: absolute;
+        width: calc(100% - 10px); /* 流下10px 给pading-left */
+        top: $content-top-height + $operation-menu-height;
+        bottom: $bottom-height + $bottom-padding-top;
+        /*padding-top:10px;*/
+        /*padding-bottom:10px;*/
+        text-align: center;
+        overflow-y: scroll;
+        /*background-color: #f2f2f2;*/
+        z-index: 120;
+    }
+    .content-bottom{
+        position: absolute;
+        bottom:0px;
+        width: 100%;
+        height: $bottom-height;
+        padding-top: $bottom-padding-top;
+        /*background-color: #e6e6e6;*/
+        background: linear-gradient(to bottom, #f2f2f2, #e6e6e6, #f2f2f2);
+        text-align: center;
+        z-index: 120;
+    }
+</style>
