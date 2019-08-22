@@ -155,6 +155,41 @@ let http = {
       }
     )
   },
+  upload (url, params) {
+    url = /^(((http|https):\/\/)|(\/\/))/.test(url) ? url : (config.baseURL + url);
+    console.log(params)
+    createLoading()
+    return axios({
+      method: 'post',
+      url: url,
+      data: params,
+      // headers: {
+      //   'Content-Type':'multipart/form-data'
+      // }
+    }).then(
+        (res) => {
+          if (checkLogin(res)) {
+            closeLoading()
+            if (checkCode(res)) {
+              return Promise.resolve(res)
+            } else {
+              return Promise.reject(res)
+            }
+          }
+        }
+    ).then(
+        (res) => {
+          if (checkLogin(res)) {
+            closeLoading()
+            if (checkCode(res)) {
+              return Promise.resolve(res)
+            } else {
+              return Promise.reject(res)
+            }
+          }
+        }
+    )
+  },
   put (url, data) {
     createLoading()
     url = /^(((http|https):\/\/)|(\/\/))/.test(url) ? url : (config.baseURL + url);

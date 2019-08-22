@@ -4,7 +4,12 @@ export const requestLogin = params => { return http.post(`login`, params).then(r
 
 export const getDeploymentList = params => { return http.get(`activiti/deployment/list`, { params: params }).then(res=>res.data); };
 
-export const getUserListPage = params => { return http.get(`user/listpage`, { params: params }); };
+export const deployZip = params => {
+    console.log("----params---")
+    console.log(params)
+    console.log("----params---")
+    return http.upload(`activiti/deployment/deploy`, { params: params }).then(res=>res.data);
+};
 
 export const removeUser = params => { return http.get(`user/remove`, { params: params }); };
 

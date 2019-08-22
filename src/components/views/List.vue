@@ -63,29 +63,27 @@
             </el-pagination>
         </div>
         <!--dialog-->
-        <el-dialog title="收货地址" :modal-append-to-body='false' :visible.sync="dialogFormVisible" modal="true">
-            <el-form :model="form">
-                <el-form-item label="活动名称" :label-width="formLabelWidth">
-                    <el-input v-model="form.name" autocomplete="off"></el-input>
+        <el-dialog title="收货地址" :modal-append-to-body='false' :visible.sync="dialogFormVisible" modal>
+            <el-form :model="form" enctype="multipart/form-data" >
+                <el-form-item label="部署名称" :label-width="formLabelWidth">
+                    <el-input v-model="form.deployName" autocomplete="off"></el-input>
                 </el-form-item>
-                <el-form-item label="活动区域" :label-width="formLabelWidth">
-                    <el-select v-model="form.region" placeholder="请选择活动区域">
-                        <el-option label="区域一" value="shanghai"></el-option>
-                        <el-option label="区域二" value="beijing"></el-option>
-                    </el-select>
+                <el-form-item label="部署文件" :label-width="formLabelWidth">
+                    <input name="file" @change="getFile($event)" type="file"/>
                 </el-form-item>
             </el-form>
             <div slot="footer" class="dialog-footer">
                 <el-button @click="dialogFormVisible = false">取 消</el-button>
-                <el-button type="primary" @click="dialogFormVisible = false">确 定</el-button>
+                <el-button type="primary" @click="deploy">确 定</el-button>
             </div>
         </el-dialog>
     </div>
 </template>
 
 <script>
-    import {getDeploymentList} from '../../api/api'
+    import {deployZip, getDeploymentList} from '../../api/api'
     import format from 'date-fns/format'
+    import Qs from 'qs';
     export default {
         data() {
             return {
@@ -95,16 +93,11 @@
                 pageSize: 10,
                 dialogFormVisible: false,
                 form: {
-                    name: '',
-                    region: '',
-                    date1: '',
-                    date2: '',
-                    delivery: false,
-                    type: [],
-                    resource: '',
-                    desc: ''
+                    deployName: '',
+                    file: '',
                 },
-                formLabelWidth: '120px'
+                formLabelWidth: '80px',
+                formData: null,
             }
         },
         mounted() {
@@ -135,6 +128,29 @@
                     this.tableData = data.list;
                     this.total = data.total;
                 });
+            },
+            deploy() {
+                console.log(this.form.deployName)
+                console.log(this.form.file)
+                var fd = new FormData();
+                fd.append("deploymentName", this.form.deployName);
+                fd.append("file", this.form.file);
+                fd = Qs.stringify(fd)
+
+                this.formData = fd;
+
+                console.log("fromData-------")
+                console.log("fd", )
+                deployZip(this.formData).then(resp=>{
+                    let data = resp.data;
+                    if (data.code === 200) {
+                        console.log("部署成功")
+                    }
+                });
+            },
+            getFile(event) {
+                this.form.file = event.target.files[0];
+
             },
             formatDate(vrow, column, cellValue) {
                 let d = format(cellValue, "yyyy-MM-dd hh:mm:ss");
