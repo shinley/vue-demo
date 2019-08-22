@@ -6,9 +6,9 @@
                 <el-breadcrumb-item>流程管理</el-breadcrumb-item>
             </el-breadcrumb>
         </div>
-       <div class="button-list">
-
-       </div>
+        <div class="operation-menu">
+            <el-button type="primary" size="mini">新增部署</el-button>
+        </div>
         <div class="content-main">
             <el-table
                     ref="filterTable"
@@ -46,11 +46,8 @@
                     <template slot-scope="scope">
                         <el-button
                                 size="mini"
-                                @click="handleEdit(scope.$index, scope.row)">Edit</el-button>
-                        <el-button
-                                size="mini"
                                 type="danger"
-                                @click="handleDelete(scope.$index, scope.row)">Delete</el-button>
+                                @click="handleDelete(scope.$index, scope.row)">删除</el-button>
                     </template>
                 </el-table-column>
             </el-table>
@@ -68,6 +65,55 @@
     </div>
 </template>
 
+<style lang="scss" scoped>
+    $content-top-height: 40px;
+    $bottom-height:35px;
+    $bottom-padding-top:5px;
+    $operation-menu-height:40px;
+    .content-top{
+        position: absolute;
+        top:0px;
+        width: 100%;
+        height: $content-top-height;
+        line-height: $content-top-height;
+        background: linear-gradient(to bottom, #f2f2f2, #e6e6e6, #f2f2f2);
+        z-index: 120;
+    }
+    .operation-menu {
+        position: absolute;
+        top: $content-top-height;
+        height: $operation-menu-height;
+        line-height: $operation-menu-height;
+        padding-left: 30px;
+        width: 100%;
+
+        /*background-color: #42b983;*/
+        z-index: 120;
+    }
+    .content-main{
+        position: absolute;
+        width: calc(100% - 10px); /* 流下10px 给pading-left */
+        top: $content-top-height + $operation-menu-height;
+        bottom: $bottom-height + $bottom-padding-top;
+        /*padding-top:10px;*/
+        /*padding-bottom:10px;*/
+        text-align: center;
+        overflow-y: scroll;
+        /*background-color: #f2f2f2;*/
+        z-index: 120;
+    }
+    .content-bottom{
+        position: absolute;
+        bottom:0px;
+        width: 100%;
+        height: $bottom-height;
+        padding-top: $bottom-padding-top;
+        /*background-color: #e6e6e6;*/
+        background: linear-gradient(to bottom, #f2f2f2, #e6e6e6, #f2f2f2);
+        text-align: center;
+        z-index: 120;
+    }
+</style>
 <script>
     import {getDeploymentList} from '../../api/api'
     import format from 'date-fns/format'
@@ -116,46 +162,3 @@
         }
     }
 </script>
-<style lang="scss">
-    $content-top-height: 40px;
-    $bottom-height:35px;
-    $bottom-padding-top:5px;
-    .content-top{
-        position: absolute;
-        top:0px;
-        width: 100%;
-        height: $content-top-height;
-        line-height: $content-top-height;
-        background: linear-gradient(to bottom, #f2f2f2, #e6e6e6, #f2f2f2);
-        z-index: 120;
-    }
-    .content-main{
-        position: absolute;
-        width: calc(100% - 10px); /* 流下10px 给pading-left */
-        top: $content-top-height;
-        bottom: $bottom-height + $bottom-padding-top;
-        /*padding-top:10px;*/
-        /*padding-bottom:10px;*/
-        text-align: center;
-        overflow-y: scroll;
-        /*background-color: #f2f2f2;*/
-        z-index: 120;
-    }
-    .content-bottom{
-        position: absolute;
-        bottom:0px;
-        width: 100%;
-        height: $bottom-height;
-        padding-top: $bottom-padding-top;
-        /*background-color: #e6e6e6;*/
-        background: linear-gradient(to bottom, #f2f2f2, #e6e6e6, #f2f2f2);
-        text-align: center;
-        z-index: 120;
-    }
-    .el-breadcrumb {
-        position: absolute;
-        top:50%;
-        transform: translateY(-50%);
-        left:10px;
-    }
-</style>
