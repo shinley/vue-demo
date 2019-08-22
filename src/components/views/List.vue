@@ -130,18 +130,15 @@
                 });
             },
             deploy() {
-                // var param = {
-                //     'deploymentName': this.form.deployName,
-                //     'file': this.form.file
-                // }
-                // param = Qs.stringify(param);
                 let param = new FormData();
                 param.append('deploymentName', this.form.deployName);
                 param.append('file', this.form.file);
                 deployZip(param).then(resp=>{
                     let data = resp.data;
                     if (data.code === 200) {
-                        console.log("部署成功")
+                        console.log("部署成功");
+                        // 关闭弹窗
+                        // 刷新页面
                     }
                 });
             },
