@@ -59,6 +59,8 @@
             <el-pagination
                     background
                     layout="prev, pager, next"
+                    @prev-click="prevClick"
+                    @next-click="nextClick"
                     :page-size="pageSize"
                     :total="total">
             </el-pagination>
@@ -74,29 +76,38 @@
             return {
                 tableData: [],
                 total: 0,
-                pageSize: 0,
+                pageIndex: 1,
+                pageSize: 10,
             }
         },
         mounted() {
-            getDeploymentList().then(resp => {
-                let  data  = resp.data;
-                this.tableData = data.list;
-                this.total = data.total;
-                this.pageSize = 10;
-            });
+            this.findDeployment(this.pageIndex);
         },
         methods: {
-            resetDateFilter() {
-                this.$refs.filterTable.clearFilter('date');
+            prevClick(pageIndex) {
+                if (pageIndex > 1) {
+                    pageIndex--;
+                } else {
+                    return;
+                }
+                this.findDeployment(pageIndex);
             },
-            clearFilter() {
-                this.$refs.filterTable.clearFilter();
+            nextClick(pageIndex) {
+                let pageCount = (this.total + this.pageSize - 1)/this.pageSize;
+                if (pageIndex >= pageCount) {
+                    return;
+                } else {
+                    pageIndex--;
+                }
+
+                this.findDeployment(pageIndex);
             },
-            formatter(row) {
-                return row.address;
-            },
-            filterTag(value, row) {
-                return row.tag === value;
+            findDeployment(pageIndex, keyword="") {
+                getDeploymentList({pageIndex: pageIndex, pageSize: this.pageSize, keyword: keyword}).then(resp => {
+                    let  data  = resp.data;
+                    this.tableData = data.list;
+                    this.total = data.total;
+                });
             },
             formatDate(vrow, column, cellValue) {
                 let d = format(cellValue, "yyyy-MM-dd hh:mm:ss");
