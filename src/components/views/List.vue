@@ -130,18 +130,15 @@
                 });
             },
             deploy() {
-                console.log(this.form.deployName)
-                console.log(this.form.file)
-                var fd = new FormData();
-                fd.append("deploymentName", this.form.deployName);
-                fd.append("file", this.form.file);
-                fd = Qs.stringify(fd)
-
-                this.formData = fd;
-
-                console.log("fromData-------")
-                console.log("fd", )
-                deployZip(this.formData).then(resp=>{
+                // var param = {
+                //     'deploymentName': this.form.deployName,
+                //     'file': this.form.file
+                // }
+                // param = Qs.stringify(param);
+                let param = new FormData();
+                param.append('deploymentName', this.form.deployName);
+                param.append('file', this.form.file);
+                deployZip(param).then(resp=>{
                     let data = resp.data;
                     if (data.code === 200) {
                         console.log("部署成功")
