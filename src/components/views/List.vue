@@ -122,10 +122,7 @@
                         // 关闭弹窗
                         this.dialogFormVisible = false;
                         // 通知
-                        this.$message({
-                            message: '添加成功!',
-                            type: 'success'
-                        });
+                        this.addSuccess();
                         // 刷新页面
                         this.findDeployment(this.pageIndex, this.keyword);
                     }
@@ -138,6 +135,12 @@
             formatDate(vrow, column, cellValue) {
                 let d = format(cellValue, "yyyy-MM-dd hh:mm:ss");
                 return d;
+            },
+            addSuccess() {
+                this.$message({
+                    message: '添加成功!',
+                    type: 'success'
+                });
             }
         }
     }
