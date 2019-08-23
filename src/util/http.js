@@ -68,21 +68,21 @@ var loadingIntance = null
 var loading = false
 
 function createLoading () {
-  if (!loading) {
-    loadingIntance = Loading.service({
-      'text': '数据加载中...'
-    })
-    loading = true
-  }
+  // createLoadingif (!loading) {
+  //   loadingIntance = Loading.service({
+  //     'text': '数据加载中...'
+  //   })
+  //   loading = true
+  // }
 }
 
 function closeLoading () {
-  if (loadingIntance) {
-    loadingIntance.close()
-    setTimeout(function () {
-      loading = false
-    }, 200)
-  }
+  // if (loadingIntance) {
+  //   loadingIntance.close()
+  //   setTimeout(function () {
+  //     loading = false
+  //   }, 200)
+  // }
 }
 
 let http = {
