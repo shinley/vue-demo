@@ -135,10 +135,4 @@
     .el-pagination .el-pager li{
         background-color: #ffffff;
     }
-    .el-breadcrumb {
-        position: absolute;
-        top:50%;
-        transform: translateY(-50%);
-        left:10px;
-    }
 </style>

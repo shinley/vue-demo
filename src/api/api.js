@@ -8,6 +8,8 @@ export const deployZip = params => {return http.upload(`activiti/deployment/depl
 
 export const removeDelopyment = params => { return http.delete(`activiti/deployment/delete`,  params ).then(res=>res.data); };
 
+export const getProcessDefinitionList = params => { return http.get(`activiti/prodefinition/list`, params).then(res=>res.data); };
+
 export const batchRemoveUser = params => { return http.get(`user/batchremove`, { params: params }); };
 
 export const editUser = params => { return http.get(`user/edit`, { params: params }); };

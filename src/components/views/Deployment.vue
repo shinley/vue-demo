@@ -217,4 +217,9 @@
         text-align: center;
         z-index: 120;
     }
+    .el-breadcrumb {
+        font-size: 14px;
+        line-height: 40px;
+        padding-left: 10px;
+    }
 </style>
