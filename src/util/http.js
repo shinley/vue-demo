@@ -18,6 +18,7 @@ import config from '../config/app.config'
 
 // 设置默认请求头
 axios.defaults.headers = {
+  'Content-Type': 'application/json;charset=UTF-8;',
   'X-Requested-With': 'XMLHttpRequest'
 }
 
@@ -227,12 +228,13 @@ let http = {
     )
   },
   delete (url, data) {
-    createLoading()
+    console.log(data);
+    createLoading();
     url = /^(((http|https):\/\/)|(\/\/))/.test(url) ? url : (config.baseURL + url);
     return axios({
       method: 'delete',
       url: url,
-      data
+      params: data
     }).then(
       (res) => {
         closeLoading()

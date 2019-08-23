@@ -80,7 +80,7 @@
 </template>
 
 <script>
-    import {deployZip, getDeploymentList} from '../../api/api'
+    import {deployZip, getDeploymentList, removeDelopyment} from '../../api/api'
     import format from 'date-fns/format'
     // import Qs from 'qs';
     export default {
@@ -122,23 +122,30 @@
                         // 关闭弹窗
                         this.dialogFormVisible = false;
                         // 通知
-                        this.addSuccess();
+                        this.notice("添加成功！");
                         // 刷新页面
                         this.findDeployment(this.pageIndex, this.keyword);
                     }
                 });
             },
+            handleDelete(index, row) {
+              removeDelopyment({deploymentId:row.id}).then(resp=>{
+                  if (resp.code===200) {
+                      this.notice("删除成功");
+                      this.findDeployment(this.pageIndex, this.keyword);
+                  }
+              });
+            },
             getFile(event) {
                 this.form.file = event.target.files[0];
-
             },
             formatDate(vrow, column, cellValue) {
                 let d = format(cellValue, "yyyy-MM-dd hh:mm:ss");
                 return d;
             },
-            addSuccess() {
+            notice(text) {
                 this.$message({
-                    message: '添加成功!',
+                    message: text,
                     type: 'success'
                 });
             }

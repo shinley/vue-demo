@@ -6,7 +6,7 @@ export const getDeploymentList = params => { return http.get(`activiti/deploymen
 
 export const deployZip = params => {return http.upload(`activiti/deployment/deploy`, params).then(res=>res.data);};
 
-export const removeUser = params => { return http.get(`user/remove`, { params: params }); };
+export const removeDelopyment = params => { return http.delete(`activiti/deployment/delete`,  params ).then(res=>res.data); };
 
 export const batchRemoveUser = params => { return http.get(`user/batchremove`, { params: params }); };
 
