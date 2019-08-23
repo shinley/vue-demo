@@ -82,6 +82,7 @@
 <script>
     import {deployZip, getDeploymentList, removeDelopyment} from '../../api/api'
     import format from 'date-fns/format'
+    import _ from 'lodash/array'
     // import Qs from 'qs';
     export default {
         data() {
@@ -121,18 +122,18 @@
                     if (resp.code == 200) {
                         // 关闭弹窗
                         this.dialogFormVisible = false;
-                        // 通知
-                        this.notice("添加成功！");
                         // 刷新页面
                         this.findDeployment(this.pageIndex, this.keyword);
+                        // 通知
+                        this.notice("添加成功！");
                     }
                 });
             },
             handleDelete(index, row) {
               removeDelopyment({deploymentId:row.id}).then(resp=>{
                   if (resp.code===200) {
+                      this.findDeployment(this.pageIndex);
                       this.notice("删除成功");
-                      this.findDeployment(this.pageIndex, this.keyword);
                   }
               });
             },
