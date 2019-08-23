@@ -7,7 +7,17 @@
             </el-breadcrumb>
         </div>
         <div class="operation-menu">
-            <el-button type="primary" size="mini" @click="dialogFormVisible = true">新增部署</el-button>
+            <el-form :inline="true" class="demo-form-inline">
+                <el-form-item>
+                    <el-button type="primary" size="mini" @click="dialogFormVisible = true">新增部署</el-button>
+                </el-form-item>
+                <el-form-item style="margin-left: 50px;">
+                    <el-input v-model="keyword" size="mini" placeholder="请输入内容"></el-input>
+                </el-form-item>
+                <el-form-item>
+                    <el-button type="primary" @click="search" size="mini" icon="el-icon-search">搜索</el-button>
+                </el-form-item>
+            </el-form>
         </div>
         <div class="content-main">
             <el-table
@@ -91,6 +101,7 @@
                 total: 0,
                 pageIndex: 1,
                 pageSize: 10,
+                keyword: '',
                 dialogFormVisible: false,
                 form: {
                     deployName: '',
@@ -136,6 +147,10 @@
                       this.notice("删除成功");
                   }
               });
+            },
+            search() {
+                console.log(this.keyword);
+                this.findDeployment(this.pageIndex, this.keyword);
             },
             getFile(event) {
                 this.form.file = event.target.files[0];
