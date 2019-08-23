@@ -56,8 +56,7 @@
             <el-pagination
                     background
                     layout="prev, pager, next"
-                    @prev-click="prevClick"
-                    @next-click="nextClick"
+                    @current-change="handleCurrentChange"
                     :page-size="pageSize"
                     :total="total">
             </el-pagination>
@@ -83,7 +82,7 @@
 <script>
     import {deployZip, getDeploymentList} from '../../api/api'
     import format from 'date-fns/format'
-    import Qs from 'qs';
+    // import Qs from 'qs';
     export default {
         data() {
             return {
@@ -104,22 +103,7 @@
             this.findDeployment(this.pageIndex);
         },
         methods: {
-            prevClick(pageIndex) {
-                if (pageIndex > 1) {
-                    pageIndex--;
-                } else {
-                    return;
-                }
-                this.findDeployment(pageIndex);
-            },
-            nextClick(pageIndex) {
-                let pageCount = (this.total + this.pageSize - 1)/this.pageSize;
-                if (pageIndex >= pageCount) {
-                    return;
-                } else {
-                    pageIndex--;
-                }
-
+            handleCurrentChange(pageIndex) {
                 this.findDeployment(pageIndex);
             },
             findDeployment(pageIndex, keyword="") {
@@ -134,11 +118,16 @@
                 param.append('deploymentName', this.form.deployName);
                 param.append('file', this.form.file);
                 deployZip(param).then(resp=>{
-                    let data = resp.data;
-                    if (data.code === 200) {
-                        console.log("部署成功");
+                    if (resp.code == 200) {
                         // 关闭弹窗
+                        this.dialogFormVisible = false;
+                        // 通知
+                        this.$message({
+                            message: '添加成功!',
+                            type: 'success'
+                        });
                         // 刷新页面
+                        this.findDeployment(this.pageIndex, this.keyword);
                     }
                 });
             },
