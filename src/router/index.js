@@ -30,20 +30,20 @@ let routes = [
         name: '流程部署',
         iconCls: 'el-icon-message',//图标样式class
         children: [
-            { path: '/list', component: List, name: '列表'},
-            { path: '/form2', component: Form2, name: '页面5' }
+            { path: '/list', component: List, name: '部署管理'},
+            { path: '/form2', component: Form2, name: '流程管理' }
         ]
     },
-    {
-        path: '/',
-        component: Home,
-        name: '导航二',
-        iconCls: 'fa fa-id-card-o',
-        children: [
-            { path: '/list', component: List, name: '页面4' },
-            { path: '/form2', component: Form2, name: '页面5' }
-        ]
-    },
+    // {
+    //     path: '/',
+    //     component: Home,
+    //     name: '导航二',
+    //     iconCls: 'fa fa-id-card-o',
+    //     children: [
+    //         { path: '/list', component: List, name: '页面4' },
+    //         { path: '/form2', component: Form2, name: '页面5' }
+    //     ]
+    // },
     // {
     //     path: '/',
     //     component: Home,

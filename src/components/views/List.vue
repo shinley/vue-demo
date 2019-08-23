@@ -72,7 +72,7 @@
             </el-pagination>
         </div>
         <!--dialog-->
-        <el-dialog title="收货地址" :modal-append-to-body='false' :visible.sync="dialogFormVisible" modal>
+        <el-dialog title="流程部署" :modal-append-to-body='false' :visible.sync="dialogFormVisible" modal>
             <el-form :model="form" enctype="multipart/form-data" >
                 <el-form-item label="部署名称" :label-width="formLabelWidth">
                     <el-input v-model="form.deployName" autocomplete="off"></el-input>
