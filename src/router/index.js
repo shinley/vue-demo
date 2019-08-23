@@ -5,11 +5,12 @@ Vue.use(Router)
 
 import Login from '../components/views/Login.vue'
 import Home from '../components/views/Home.vue'
-import List from '../components/views/List.vue'
+import Deployment from '../components/views/Deployment.vue'
+import ProcessDefinition from '../components/views/ProcessDefinition.vue'
 import NotFound from '../components/views/404.vue'
 // import Table from '../components/views/nav1/Table.vue'
 // import Form from '../components/views/nav1/Form.vue'
-import Form2 from '../components/views/Form.vue'
+// import Form2 from '../components/views/Form.vue'
 // import user from '../components/views/nav1/user.vue'
 let routes = [
     {
@@ -30,8 +31,8 @@ let routes = [
         name: '流程部署',
         iconCls: 'el-icon-message',//图标样式class
         children: [
-            { path: '/list', component: List, name: '部署管理'},
-            { path: '/form2', component: Form2, name: '流程管理' }
+            { path: '/deployment', component: Deployment, name: '部署管理'},
+            { path: '/processDefinition', component: ProcessDefinition, name: '流程管理' }
         ]
     },
     // {
@@ -66,7 +67,7 @@ let routes = [
     {
         path: '*',
         hidden: true,
-        redirect: { path: '/404' }
+        redirect: { path: '/home' }
     }
 ];
 
