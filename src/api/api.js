@@ -1,6 +1,6 @@
 import http from '../util/http'
 
-export const requestLogin = params => { return http.post(`login`, params).then(res => res.data); };
+export const requestLogin = params => { return http.post(`activiti/login`, params).then(res => res.data); };
 
 export const getDeploymentList = params => { return http.get(`activiti/deployment/list`, params).then(res=>res.data); };
 

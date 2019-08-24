@@ -25,10 +25,10 @@
           password: ''
         },
         loginRules: {
-          account: [
+          userName: [
             { required: true, message: '请输入账号', trigger: 'blur' },
           ],
-          checkPass: [
+          password: [
             { required: true, message: '请输入密码', trigger: 'blur' },
           ]
         },
@@ -41,17 +41,17 @@
           if (valid) {
             this.logining = true;
             var loginParams = { username: this.loginForm.userName, password: this.loginForm.password };
-            requestLogin(loginParams).then(data => {
+            requestLogin(loginParams).then(resp => {
               this.logining = false;
-              let { msg, code, user } = data;
-              if (code !== 200) {
+              let { message, code, data } = resp;
+              if (code !== 200 && data != 'success') {
                 this.$message({
-                  message: msg,
+                  message: message,
                   type: 'error'
                 });
               } else {
-                sessionStorage.setItem('user', JSON.stringify(user));
-                this.$router.push({ path: '/table' });
+                sessionStorage.setItem('user', JSON.stringify(this.loginForm.userName));
+                this.$router.push({ path: '/home' });
               }
             });
           } else {
