@@ -44,15 +44,19 @@
                 />
                 <el-table-column
                         align="center"
-                        prop="category"
-                        label="分类"
-                />
-                <el-table-column
-                        align="center"
                         prop="version"
                         label="版本"
                         sortable
                 />
+                <el-table-column
+                        fixed="right"
+                        label="流程图"
+                        align="center"
+                        width="100">
+                    <template slot-scope="scope">
+                        <el-button @click="showProcessDefinitionImg(scope.row)" type="text" size="small">查看流程图</el-button>
+                    </template>
+                </el-table-column>
                 <el-table-column
                         fixed="right"
                         align="center"
@@ -76,12 +80,23 @@
                     :total="total">
             </el-pagination>
         </div>
+
+        <!--dialog-->
+        <el-dialog title="流程图" :modal-append-to-body='false'
+                   center
+                   :visible.sync="dialogFormVisible" modal>
+            <el-image
+                    style="margin: 0 auto;"
+                    :src="url"
+                    :fit="fit"></el-image>
+        </el-dialog>
     </div>
 </template>
 
 <script>
-    import {getProcessDefinitionList} from '../../api/api'
+    import {getProcessDefinitionList, removeProcessDefinition} from '../../api/api'
     import format from 'date-fns/format'
+    import config from '../../config/app.config'
     export default {
         data() {
             return {
@@ -97,6 +112,8 @@
                 },
                 formLabelWidth: '80px',
                 formData: null,
+                fit: 'contain',
+                url: ''
             }
         },
         mounted() {
@@ -109,7 +126,21 @@
             deploy() {
 
             },
+            showProcessDefinitionImg(row) {
+                this.dialogFormVisible = true;
+                this.url= config.baseURL + 'activiti/prodefinition/viewpic?deploymentId=' + row.deploymentId + "&imageName=" + row.diagramResourceName
+            },
             handleDelete(index, row) {
+                let deploymentId = row.deploymentId;
+                removeProcessDefinition({deploymentId: deploymentId}).then(resp => {
+                    let {code, data} = resp;
+                    if (code == 200 && data) {
+                        this.notice("删除成功!")
+                        this.findProcessDefinition(this.pageIndex);
+                    } else {
+                        this.notice("删除失败！", 'error')
+                    }
+                });
 
             },
             search() {
@@ -119,10 +150,10 @@
                 let d = format(cellValue, "yyyy-MM-dd hh:mm:ss");
                 return d;
             },
-            notice(text) {
+            notice(text, type='success') {
                 this.$message({
                     message: text,
-                    type: 'success'
+                    type: type
                 });
             },
             findProcessDefinition(pageIndex, keyword="") {

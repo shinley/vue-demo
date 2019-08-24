@@ -10,6 +10,8 @@ export const removeDelopyment = params => { return http.delete(`activiti/deploym
 
 export const getProcessDefinitionList = params => { return http.get(`activiti/prodefinition/list`, params).then(res=>res.data); };
 
+export const removeProcessDefinition = params => { return http.delete(`activiti/prodefinition/delete`,  params ).then(res=>res.data); };
+
 export const batchRemoveUser = params => { return http.get(`user/batchremove`, { params: params }); };
 
 export const editUser = params => { return http.get(`user/edit`, { params: params }); };
