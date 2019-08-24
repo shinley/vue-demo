@@ -44,9 +44,9 @@
             requestLogin(loginParams).then(resp => {
               this.logining = false;
               let { message, code, data } = resp;
-              if (code !== 200 && data != 'success') {
+              if (code !== 200 || !data) {
                 this.$message({
-                  message: message,
+                  message: '登录失败, 请检查用户名和密码',
                   type: 'error'
                 });
               } else {
