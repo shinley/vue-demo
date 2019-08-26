@@ -37,12 +37,7 @@
                 />
                 <el-table-column
                         align="center"
-                        prop="category"
-                        label="分类"
-                />
-                <el-table-column
-                        align="center"
-                        prop="deploymentTime"
+                        prop="deployTime"
                         label="部署日期"
                         sortable
                         column-key="date"

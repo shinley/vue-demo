@@ -40,7 +40,7 @@
         this.$refs.loginForm.validate((valid) => {
           if (valid) {
             this.logining = true;
-            var loginParams = { username: this.loginForm.userName, password: this.loginForm.password };
+            var loginParams = { userName: this.loginForm.userName, password: this.loginForm.password };
             requestLogin(loginParams).then(resp => {
               this.logining = false;
               let { message, code, data } = resp;

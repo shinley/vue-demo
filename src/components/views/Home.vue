@@ -1,6 +1,8 @@
 <template>
     <div id="main">
-        <div id="dHead">固定头部60px;</div>
+        <div id="dHead">
+            <Header></Header>
+        </div>
         <div id="dBody">
             <div class="mycontent">
                 <div class="sidebar">
@@ -26,8 +28,10 @@
 </template>
 
 <script>
+    import Header from "../Header";
     export default {
-        name: "Home"
+        name: "Home",
+        components: {Header},
     }
 </script>
 

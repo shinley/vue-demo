@@ -15,6 +15,10 @@
 import axios from 'axios'
 import { Message, Loading } from 'element-ui'
 import config from '../config/app.config'
+import router from '../router'
+
+// 允许携带cookie
+axios.defaults.withCredentials=true;
 
 // 设置默认请求头
 axios.defaults.headers = {
@@ -42,10 +46,11 @@ function checkLogin (resp) {
   if (resp) {
     if ((resp.data && `${resp.data.code}` === '401') ||
       `${resp.status}` === '401') {
-      let currentLocation = window.location.href
+      // let currentLocation = window.location.href
       setTimeout(function () {
         // 重定向到登录页面
-        window.location = `/user/login?redirect_url=${currentLocation}`
+        // window.location = `/user/login?redirect_url=${currentLocation}`
+        router.push({ path: '/login' });
       }, 0)
       return false
     }
