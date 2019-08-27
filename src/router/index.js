@@ -35,16 +35,16 @@ let routes = [
             { path: '/processDefinition', component: ProcessDefinition, name: '流程管理' }
         ]
     },
-    // {
-    //     path: '/',
-    //     component: Home,
-    //     name: '导航二',
-    //     iconCls: 'fa fa-id-card-o',
-    //     children: [
-    //         { path: '/list', component: List, name: '页面4' },
-    //         { path: '/form2', component: Form2, name: '页面5' }
-    //     ]
-    // },
+    {
+        path: '/home',
+        component: Home,
+        name: '任务管理',
+        iconCls: 'fa fa-id-card-o',
+        children: [
+            { path: '/deployment', component: Deployment, name: '我的申请' },
+            { path: '/processDefinition', component: ProcessDefinition, name: '待审核' }
+        ]
+    },
     // {
     //     path: '/',
     //     component: Home,
