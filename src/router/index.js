@@ -7,6 +7,7 @@ import Login from '../components/views/Login.vue'
 import Home from '../components/views/Home.vue'
 import Deployment from '../components/views/Deployment.vue'
 import ProcessDefinition from '../components/views/ProcessDefinition.vue'
+import LuoNiu from '../components/views/LuoNiu.vue'
 import NotFound from '../components/views/404.vue'
 // import Table from '../components/views/nav1/Table.vue'
 // import Form from '../components/views/nav1/Form.vue'
@@ -51,7 +52,7 @@ let routes = [
         name: '股票做T',
         iconCls: 'fa fa-id-card-o',
         children: [
-            { path: '/luoNiu', component: Deployment, name: '罗牛山预估' },
+            { path: '/luoNiu', component: LuoNiu, name: '罗牛山预估' },
             { path: '/processDefinition', component: ProcessDefinition, name: '自助预估' }
         ]
     },
