@@ -45,6 +45,16 @@ let routes = [
             { path: '/processDefinition', component: ProcessDefinition, name: '待审核' }
         ]
     },
+    {
+        path: '/home',
+        component: Home,
+        name: '股票做T',
+        iconCls: 'fa fa-id-card-o',
+        children: [
+            { path: '/luoNiu', component: Deployment, name: '罗牛山预估' },
+            { path: '/processDefinition', component: ProcessDefinition, name: '自助预估' }
+        ]
+    },
     // {
     //     path: '/',
     //     component: Home,
