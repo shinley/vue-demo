@@ -11,28 +11,30 @@
 
         </div>
         <div class="content-main">
+
             <el-form ref="form" :model="form" label-width="80px">
-                <el-form-item label="股票代码" align="left">
+                <el-form-item label="预测日期:" align="left">
+                    {{gupiao.stockDate}}
+                </el-form-item>
+                <el-form-item label="股票代码:" align="left">
+                    {{gupiao.code}}
+                </el-form-item>
+                <el-form-item label="股票名称:" align="left">
+                    {{gupiao.name}}
+                </el-form-item>
+                <el-form-item label="最高价:" align="left">
+                    {{gupiao.highestPrice}}
+                </el-form-item>
+                <el-form-item label="次高价:" align="left">
+                    {{gupiao.secondHighPrice}}
+                </el-form-item>
+                <el-form-item label="次低价:" align="left">
+                    {{gupiao.secondLowPrice}}
+                </el-form-item>
+                <el-form-item label="最低价:" align="left">
+                    {{gupiao.lowestPrice}}
+                </el-form-item>
 
-                </el-form-item>
-                <el-form-item label="股票名称" align="left">
-
-                </el-form-item>
-                <el-form-item label="最高价" align="left">
-
-                </el-form-item>
-                <el-form-item label="次高价" align="left">
-
-                </el-form-item>
-                <el-form-item label="次低价" align="left">
-
-                </el-form-item>
-                <el-form-item label="最低价" align="left">
-
-                </el-form-item>
-                <el-form-item label="预测日期" align="left">
-                    2019-08-31
-                </el-form-item>
             </el-form>
         </div>
         <div class="content-bottom">
@@ -47,22 +49,21 @@
         data() {
             return {
                 code: '000735',
-                form: {
+                gupiao: {
+                    code:'',
                     name: '',
-                    region: '',
-                    date1: '',
-                    date2: '',
-                    delivery: false,
-                    type: [],
-                    resource: '',
-                    desc: ''
+                    highestPrice: '',
+                    lowestPrice: '',
+                    secondHighPrice: '',
+                    secondLowPrice: '',
+                    stockDate: null
                 }
             }
         },
         mounted() {
             preditionLuoNiu({code: this.code}).then(resp=>{
                 let data = resp.data;
-                console.log(data);
+                this.gupiao = data;
             });
         },
         methods: {
