@@ -70,6 +70,7 @@
                         this.prediction = data;
                         this.drawer = true;
                     }
+                    console.log("帛屉")
                     console.log(this.prediction)
                 });
             }
