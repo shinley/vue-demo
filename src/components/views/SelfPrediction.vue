@@ -29,13 +29,27 @@
             </el-form>
 
             <el-drawer
-                    title="我是标题"
+                    title="预估结果"
                     :visible.sync="drawer"
                     :direction="direction"
                     modal
                     modal-append-to-body="false"
                     :before-close="handleClose">
-                <span>我来啦!</span>
+                <el-form ref="form" :model="form" label-width="80px">
+                    <el-form-item label="最高价:" align="left">
+                        {{prediction.highestPrice}}
+                    </el-form-item>
+                    <el-form-item label="次高价:" align="left">
+                        {{prediction.secondHighPrice}}
+                    </el-form-item>
+                    <el-form-item label="次低价:" align="left">
+                        {{prediction.secondLowPrice}}
+                    </el-form-item>
+                    <el-form-item label="最低价:" align="left">
+                        {{prediction.lowestPrice}}
+                    </el-form-item>
+
+                </el-form>
             </el-drawer>
         </div>
     </div>
