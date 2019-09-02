@@ -33,6 +33,7 @@
                     :visible.sync="drawer"
                     :direction="direction"
                     modal
+                    append-to-body="false"
                     modal-append-to-body="false"
                     :before-close="handleClose">
                 <el-form ref="form" :model="form" label-width="80px">
