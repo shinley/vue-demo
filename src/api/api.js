@@ -16,8 +16,4 @@ export const removeProcessDefinition = params => { return http.delete(`activiti/
 
 export const preditionLuoNiu = params => { return http.get(`activiti/stock/prediction`,  params ).then(res=>res.data); };
 
-export const batchRemoveUser = params => { return http.get(`user/batchremove`, { params: params }); };
-
-export const editUser = params => { return http.get(`user/edit`, { params: params }); };
-
-export const addUser = params => { return http.get(`user/add`, { params: params }); };
+export const selfPrediction = params => { return http.post(`activiti/stock/selfPrediction`, params).then(res => res.data); };

@@ -11,7 +11,7 @@ import LuoNiu from '../components/views/LuoNiu.vue'
 import NotFound from '../components/views/404.vue'
 // import Table from '../components/views/nav1/Table.vue'
 // import Form from '../components/views/nav1/Form.vue'
-// import Form2 from '../components/views/Form.vue'
+import SelfPrediction from '../components/views/SelfPrediction.vue'
 // import user from '../components/views/nav1/user.vue'
 let routes = [
     {
@@ -53,7 +53,7 @@ let routes = [
         iconCls: 'fa fa-id-card-o',
         children: [
             { path: '/luoNiu', component: LuoNiu, name: '罗牛山预估' },
-            { path: '/processDefinition', component: ProcessDefinition, name: '自助预估' }
+            { path: '/selfPrediction', component: SelfPrediction, name: '自助预估' }
         ]
     },
     // {
