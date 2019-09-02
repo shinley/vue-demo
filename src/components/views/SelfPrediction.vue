@@ -27,6 +27,14 @@
                     <el-button @click.native.prevent>取消</el-button>
                 </el-form-item>
             </el-form>
+
+            <el-drawer
+                    title="我是标题"
+                    :visible.sync="drawer"
+                    :direction="direction"
+                    :before-close="handleClose">
+                <span>我来啦!</span>
+            </el-drawer>
         </div>
     </div>
 </template>
@@ -36,6 +44,8 @@
     export default {
         data() {
             return {
+                drawer: false,
+                direction: 'rtl',
                 form: {
                     openPrice: '',
                     heighPrice: '',
@@ -55,8 +65,11 @@
             checkoutTest() {
                 selfPrediction(this.form).then(resp => {
                     //NProgress.done();
-                    let data= resp.data;
-                    this.prediction = data;
+                    let {code, data}= resp.data;
+                    if (code == 200)  {
+                        this.prediction = data;
+                        this.drawer = true;
+                    }
                     console.log(this.prediction)
                 });
             }
