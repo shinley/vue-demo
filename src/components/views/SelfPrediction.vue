@@ -32,6 +32,8 @@
                     title="我是标题"
                     :visible.sync="drawer"
                     :direction="direction"
+                    modal
+                    modal-append-to-body="false"
                     :before-close="handleClose">
                 <span>我来啦!</span>
             </el-drawer>
@@ -69,6 +71,9 @@
                 selfPrediction(this.form).then(resp => {
                     //NProgress.done();
                     let {code, data}= resp.data;
+                    console.log(code)
+                    console.log(code==200)
+                    console.log(code===200)
                     if (code == 200)  {
                         this.prediction = data;
                         this.drawer = true;
