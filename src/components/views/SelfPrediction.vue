@@ -53,7 +53,10 @@
                     closePrice: ''
                 },
                 prediction: {
-
+                    highestPrice: '',
+                    secondHighPrice: '',
+                    secondLowPrice: '',
+                    lowestPrice: ''
                 }
 
             }
@@ -73,6 +76,13 @@
                     console.log("帛屉")
                     console.log(this.prediction)
                 });
+            },
+            handleClose(done) {
+                this.$confirm('确认关闭？')
+                    .then(_ => {
+                        done();
+                    })
+                    .catch(_ => {});
             }
 
         }
