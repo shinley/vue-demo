@@ -14,6 +14,8 @@ export const getProcessDefinitionList = params => { return http.get(`activiti/pr
 
 export const removeProcessDefinition = params => { return http.delete(`activiti/prodefinition/delete`,  params ).then(res=>res.data); };
 
+export const preditionLuoNiu = params => { return http.get(`activiti/stock/prediction`,  params ).then(res=>res.data); };
+
 export const batchRemoveUser = params => { return http.get(`user/batchremove`, { params: params }); };
 
 export const editUser = params => { return http.get(`user/edit`, { params: params }); };
