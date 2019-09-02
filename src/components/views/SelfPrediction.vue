@@ -70,7 +70,7 @@
             checkoutTest() {
                 selfPrediction(this.form).then(resp => {
                     //NProgress.done();
-                    let {code, data}= resp.data;
+                    let {code, data}= resp;
                     console.log(code)
                     console.log(code==200)
                     console.log(code===200)
