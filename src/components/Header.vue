@@ -1,7 +1,7 @@
 <template>
     <div class="header">
         <el-dropdown split-button type="primary" @command="handleCommand">
-            陈新磊
+            {{currentUser}}
             <el-dropdown-menu slot="dropdown">
                 <el-dropdown-item command="logout">退出登录</el-dropdown-item>
             </el-dropdown-menu>
@@ -13,6 +13,11 @@
     import { requestLogout } from '@/api/api';
     export default {
         name: "Header",
+        data() {
+            return {
+                currentUser:"zhangsan"
+            }
+        },
         methods: {
             handleCommand (command) {
                 if (command == 'logout') {

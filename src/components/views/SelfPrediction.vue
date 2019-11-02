@@ -32,9 +32,7 @@
                     title="预估结果"
                     :visible.sync="drawer"
                     :direction="direction"
-                    modal
-                    append-to-body="false"
-                    modal-append-to-body="false"
+                    size="50%"
                     :before-close="handleClose">
                 <el-form ref="form" :model="form" label-width="80px">
                     <el-form-item label="最高价:" align="left">
@@ -83,32 +81,29 @@
                 console.log('submit!');
             },
             checkoutTest() {
-                selfPrediction(this.form).then(resp => {
-                    //NProgress.done();
-                    let {code, data}= resp;
-                    console.log(code)
-                    console.log(code==200)
-                    console.log(code===200)
-                    if (code == 200)  {
-                        this.prediction = data;
-                        this.drawer = true;
-                    }
-                    console.log("帛屉")
-                    console.log(this.prediction)
-                });
+                this.drawer = true;
+                // selfPrediction(this.form).then(resp => {
+                //     //NProgress.done();
+                //     let {code, data}= resp;
+                //     console.log(code)
+                //     console.log(code==200)
+                //     console.log(code===200)
+                //     if (code == 200)  {
+                //         this.prediction = data;
+                //
+                //     }
+                //     console.log("帛屉")
+                //     console.log(this.prediction)
+                // });
             },
             handleClose(done) {
-                this.$confirm('确认关闭？')
-                    .then(_ => {
-                        done();
-                    })
-                    .catch(_ => {});
+                done();
             }
 
         }
     }
 </script>
-<style>
+<style scoped>
     .content-top{
         position: absolute;
         top:0px;
@@ -147,5 +142,12 @@
         top:50%;
         transform: translateY(-50%);
         left:10px;
+    }
+    el-dialog__wrapper{
+        position: relative;
+    }
+    .el-drawer{
+        position: absolute;
+        top: 30px;
     }
 </style>
